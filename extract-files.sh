@@ -94,4 +94,8 @@ done
 
 patchelf --replace-needed android.hardware.gnss@1.0.so android.hardware.gnss@1.0-v27.so $BLOB_ROOT/vendor/lib64/vendor.qti.gnss@1.0_vendor.so
 
+# Load camera shim
+CAMERA_SHIM="$BLOB_ROOT"/vendor/lib/libFNVfbEngineHAL.so
+patchelf --add-needed libshim_camera.so "$CAMERA_SHIM"
+
 "$MY_DIR"/setup-makefiles.sh
