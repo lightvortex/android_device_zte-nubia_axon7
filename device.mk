@@ -34,6 +34,9 @@ PRODUCT_ENFORCE_RRO_TARGETS := \
 
 PRODUCT_PROPERTY_OVERRIDES += ro.control_privapp_permissions=log
 
+# Soong namespaces
+PRODUCT_SOONG_NAMESPACES += device/zte/axon7
+
 # Permissions
 PRODUCT_COPY_FILES += \
     external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.dsi.ant.antradio_library.xml \
