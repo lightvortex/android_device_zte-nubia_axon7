@@ -160,7 +160,6 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
     camera.device@3.2-impl \
-    Snap \
     vendor.qti.hardware.camera.device@1.0 \
     vendor.qti.hardware.camera.device@1.0_vendor
 
@@ -241,13 +240,6 @@ PRODUCT_PACKAGES += \
 # IMS
 PRODUCT_PACKAGES += \
     ims-ext-common
-
-# Telephony
-#PRODUCT_PACKAGES += \
-#    telephony-ext
-
-#PRODUCT_BOOT_JARS += \
-#    telephony-ext
 
 # IPA Manager
 PRODUCT_PACKAGES += \
@@ -388,6 +380,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service
+
+
+# Telephony
+PRODUCT_PACKAGES += \
+    telephony-ext
+
+PRODUCT_BOOT_JARS += \
+    telephony-ext
 
 # TextClassifier
 PRODUCT_PACKAGES += \
