@@ -21,6 +21,9 @@
 
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
+
+#pragma push_macro("PROPERTY_VALUE_MAX")
+
 #define BTM_DEF_LOCAL_NAME   "Axon 7"
 #define BLUETOOTH_QTI_SW TRUE
 #define MAX_ACL_CONNECTIONS   16
@@ -30,5 +33,7 @@
 
 /* Increasing SEPs to 12 from 6 to support SHO/MCast i.e. two streams per codec */
 #define AVDT_NUM_SEPS 12
+
+#pragma pop_macro("PROPERTY_VALUE_MAX")
 
 #endif
