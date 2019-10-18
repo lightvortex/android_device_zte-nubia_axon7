@@ -238,11 +238,14 @@ PRODUCT_PACKAGES += \
 
 # IMS
 PRODUCT_PACKAGES += \
-    ims-ext-common \
-    telephony-ext
+    ims-ext-common
 
-PRODUCT_BOOT_JARS += \
-    telephony-ext
+# Telephony
+#PRODUCT_PACKAGES += \
+#    telephony-ext
+
+#PRODUCT_BOOT_JARS += \
+#    telephony-ext
 
 # IPA Manager
 PRODUCT_PACKAGES += \
@@ -435,5 +438,5 @@ PRODUCT_COPY_FILES += \
 #PRODUCT_PACKAGES += \
 #    libnl
 
-PRODUCT_BOOT_JARS += \
-    WfdCommon
+#PRODUCT_BOOT_JARS += \
+#    WfdCommon
