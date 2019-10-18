@@ -80,6 +80,8 @@ TARGET_KERNEL_SOURCE := kernel/zte/msm8996
 TARGET_KERNEL_CONFIG := lineageos_axon7_defconfig
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 
+BUILD_BROKEN_DUP_RULES := true
+
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 
