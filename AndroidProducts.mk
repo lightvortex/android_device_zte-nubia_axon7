@@ -17,6 +17,6 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/lineage_axon7.mk
 
 COMMON_LUNCH_CHOICES := \
-    lineage_axon7-userdebug
-    lineage_axon7-eng
+    lineage_axon7-userdebug \
+    lineage_axon7-eng \
     lineage_axon7-user

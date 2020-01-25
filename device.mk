@@ -380,6 +380,7 @@ PRODUCT_PACKAGES += \
 # RIL
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
+    android.hardware.secure_element@1.0 \
     librmnetctl \
     libxml2
 
@@ -392,7 +393,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service
-
 
 # Telephony
 PRODUCT_PACKAGES += \
@@ -431,7 +431,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
-
 
 # Wifi
 PRODUCT_PACKAGES += \
