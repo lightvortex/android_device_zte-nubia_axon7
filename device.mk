@@ -254,6 +254,13 @@ PRODUCT_PACKAGES += \
     android.hidl.manager@1.0 \
     android.hidl.manager@1.0_system
 
+# IMS
+PRODUCT_PACKAGES += \
+    ims-ext-common_system 
+
+PRODUCT_BOOT_JARS += \
+    ims-ext-common_system 
+    
 # IPA Manager
 PRODUCT_PACKAGES += \
     ipacm \
