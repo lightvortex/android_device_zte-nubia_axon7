@@ -405,6 +405,11 @@ vendor/lib/libqmiservices.so|a726fbed75d863d67206c8e027ad391140f4a488
 vendor/lib/libqmi.so|1d1dbf7dba981e620ea9d4cdc2336040ca085fca
 vendor/lib/libsmemlog.so|4e90311f07677be47af2c2df086c705fd9399ff9
 
+######################################
+# RIL - from tissot - OPR1.170623.026
+######################################
+product/framework/qti-telephony-common.jar|b1953a3599255f08f1785c677d22810f65e0167b
+
 # RIL - from fujisan - OPM1.171019.026
 # qti-telephony-common.jar - from daisy - PKQ1.180917.001
 -app/QtiTelephonyService/QtiTelephonyService.apk|c01d25e34c2dcf993d786f107a17a6323a337baa
