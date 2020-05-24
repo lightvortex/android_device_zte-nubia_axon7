@@ -376,22 +376,8 @@ PRODUCT_PACKAGES += \
 # RIL
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
-    android.hardware.secure_element@1.0 \
-    android.hardware.radio.config@1.0 \
     librmnetctl \
-    libxml2 \
-    ims-ext-common_system \
-    rild \
-    libprotobuf-cpp-full \
-    qti-telephony-hidl-wrapper \
-    qti_telephony_hidl_wrapper.xml \
-    qti-telephony-utils \
-    qti_telephony_utils.xml \
-    ims_ext_common.xml
-
-PRODUCT_BOOT_JARS += \
-    telephony-ext \
-    ims-ext-common_system
+    libxml2
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
@@ -407,6 +393,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libbase_shim
 
+# Telephony
+PRODUCT_PACKAGES += \
+    qti-telephony-hidl-wrapper \
+    qti_telephony_hidl_wrapper.xml \
+    qti-telephony-utils \
+    qti_telephony_utils.xml \
+    telephony-ext
+
+PRODUCT_BOOT_JARS += \
+    telephony-ext
+    
 # TextClassifier
 PRODUCT_PACKAGES += \
     textclassifier.bundle1
