@@ -73,7 +73,7 @@ if [ -z "${SRC}" ]; then
 fi
 
 # Initialize the helper
-setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT"
+setup_vendor "$DEVICE" "$VENDOR" "$MK_ROOT"
 
 extract "${MY_DIR}"/proprietary-files.txt "${SRC}" "${SECTION}"
 
