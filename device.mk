@@ -377,6 +377,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full \
     android.hardware.secure_element@1.0 \
+    android.hardware.radio.config@1.0 \
     librmnetctl \
     libxml2 \
     ims-ext-common_system \
