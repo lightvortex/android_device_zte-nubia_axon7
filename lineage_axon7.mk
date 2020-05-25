@@ -38,12 +38,16 @@ PRODUCT_BRAND := ZTE
 PRODUCT_MODEL := ZTE A2017X
 PRODUCT_MANUFACTURER := ZTE
 
+PRODUCT_GMS_CLIENTID_BASE := android-zte
+
+TARGET_VENDOR_PRODUCT_NAME := axon7
+TARGET_VENDOR_DEVICE_NAME := axon7
+
 PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE="ailsa_ii" \
-    PRODUCT_NAME="axon7" \
-    PRIVATE_BUILD_DESC="oneplus-oneplus3 9 PKQ1.181203.001 1905251415"
 
-# Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
-BUILD_FINGERPRINT := "OnePlus/OnePlus3/OnePlus3:8.0.0/OPR1.170623.032/02281230:user/release-keys"
+# Build info
+BUILD_FINGERPRINT := "google/coral/coral:10/QQ2A.200501.001.A3/6353761:user/release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRIVATE_BUILD_DESC="coral-user 10 QQ2A.200501.001.A3 6353761 release-keys"
 
-PRODUCT_GMS_CLIENTID_BASE := android-zte
