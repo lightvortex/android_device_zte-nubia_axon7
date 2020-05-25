@@ -44,6 +44,23 @@ function blob_fixup() {
     vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so)
         patchelf --add-needed "libbase_shim.so" "${2}"
         ;;
+    vendor/lib/libtfa9890.so)
+        sed -i "s|/etc/settings/stereo_qcom_spk.cnt|/vendor/etc/tfa/stereo_qc_spk.cnt|g" "${2}"
+        sed -i "s|/etc/settings/mono_qcom_rcv.cnt|/vendor/etc/tfa/mono_qc_rcv.cnt|g" "${2}"
+        sed -i "s|/etc/settings/mono_qcom_spk_l.cnt|/vendor/etc/tfa/mono_qc_spk_l.cnt|g" "${2}"
+        sed -i "s|/etc/settings/mono_qcom_spk_r.cnt|/vendor/etc/tfa/mono_qc_spk_r.cnt|g" "${2}"
+        sed -i "s|/etc/settings/stereo_qcom_spk_l.cnt|/vendor/etc/tfa/stereo_qc_spk_l.cnt|g" "${2}"
+        sed -i "s|/etc/settings/stereo_qcom_spk_r.cnt|/vendor/etc/tfa/stereo_qc_spk_r.cnt|g" "${2}"
+        ;;
+    vendor/etc/permissions/qti-vzw-ims-internal.xml)
+        sed -i "s|/system/vendor/framework/qti-vzw-ims-internal.jar|/vendor/framework/qti-vzw-ims-internal.jar|g" "${2}"
+        ;;
+    vendor/lib/libFNVfbEngineHAL.so)
+        patchelf --add-needed "libshim_camera.so" "${2}"
+        ;;
+    vendor/lib64/vendor.qti.gnss@1.0_vendor.so)
+        patchelf --replace-needed "android.hardware.gnss@1.0.so" "android.hardware.gnss@1.0-v27.so" "${2}"
+        ;;
     esac
 }
 
@@ -76,44 +93,5 @@ fi
 setup_vendor "$DEVICE" "$VENDOR" "$MK_ROOT"
 
 extract "${MY_DIR}"/proprietary-files.txt "${SRC}" "${SECTION}"
-
-#
-# Load NXP container profiles from vendor
-#
-LIBTFA9890="$BLOB_ROOT"/vendor/lib/libtfa9890.so
-sed -i "s|/etc/settings/stereo_qcom_spk.cnt|/vendor/etc/tfa/stereo_qc_spk.cnt|g" "$LIBTFA9890"
-sed -i "s|/etc/settings/mono_qcom_rcv.cnt|/vendor/etc/tfa/mono_qc_rcv.cnt|g" "$LIBTFA9890"
-sed -i "s|/etc/settings/mono_qcom_spk_l.cnt|/vendor/etc/tfa/mono_qc_spk_l.cnt|g" "$LIBTFA9890"
-sed -i "s|/etc/settings/mono_qcom_spk_r.cnt|/vendor/etc/tfa/mono_qc_spk_r.cnt|g" "$LIBTFA9890"
-sed -i "s|/etc/settings/stereo_qcom_spk_l.cnt|/vendor/etc/tfa/stereo_qc_spk_l.cnt|g" "$LIBTFA9890"
-sed -i "s|/etc/settings/stereo_qcom_spk_r.cnt|/vendor/etc/tfa/stereo_qc_spk_r.cnt|g" "$LIBTFA9890"
-
-#
-# Correct VZW IMS library location
-#
-QTI_VZW_IMS_INTERNAL="$BLOB_ROOT"/vendor/etc/permissions/qti-vzw-ims-internal.xml
-sed -i "s|/system/vendor/framework/qti-vzw-ims-internal.jar|/vendor/framework/qti-vzw-ims-internal.jar|g" "$QTI_VZW_IMS_INTERNAL"
-
-#
-# Correct android.hidl.manager@1.0-java jar name
-#
-QTI_LIBPERMISSIONS="$BLOB_ROOT"/vendor/etc/permissions/qti_libpermissions.xml
-sed -i "s|name=\"android.hidl.manager-V1.0-java|name=\"android.hidl.manager@1.0-java|g" "$QTI_LIBPERMISSIONS"
-
-#
-# Remove android.hidl.base@1.0 & android.hidl.manager@1.0
-#
-for HIDL_BASE_LIB in $(grep -lr "android\.hidl\.base@1\.0\.so" $BLOB_ROOT); do
-    patchelf --remove-needed android.hidl.base@1.0.so "$HIDL_BASE_LIB" || true
-done
- for HIDL_MANAGER_LIB in $(grep -lr "android\.hidl\.@1\.0\.so" $BLOB_ROOT); do
-    patchelf --remove-needed android.hidl.manager@1.0.so "$HIDL_MANAGER_LIB" || true
-done
-
-patchelf --replace-needed android.hardware.gnss@1.0.so android.hardware.gnss@1.0-v27.so $BLOB_ROOT/vendor/lib64/vendor.qti.gnss@1.0_vendor.so
-
-# Load camera shim
-CAMERA_SHIM="$BLOB_ROOT"/vendor/lib/libFNVfbEngineHAL.so
-patchelf --add-needed libshim_camera.so "$CAMERA_SHIM"
 
 "${MY_DIR}"/setup-makefiles.sh
