@@ -52,7 +52,7 @@ function blob_fixup() {
         sed -i "s|/etc/settings/stereo_qcom_spk_l.cnt|/vendor/etc/tfa/stereo_qc_spk_l.cnt|g" "${2}"
         sed -i "s|/etc/settings/stereo_qcom_spk_r.cnt|/vendor/etc/tfa/stereo_qc_spk_r.cnt|g" "${2}"
         ;;
-    vendor/etc/permissions/qti-vzw-ims-internal.xml)
+    etc/permissions/qti-vzw-ims-internal.xml)
         sed -i "s|/system/vendor/framework/qti-vzw-ims-internal.jar|/vendor/framework/qti-vzw-ims-internal.jar|g" "${2}"
         ;;
     vendor/lib/libFNVfbEngineHAL.so)

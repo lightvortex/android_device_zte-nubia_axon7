@@ -27,12 +27,10 @@ $(call inherit-product-if-exists, vendor/zte/axon7/axon7-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-#DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
 
 PRODUCT_ENFORCE_RRO_TARGETS := \
     framework-res
-
-PRODUCT_PROPERTY_OVERRIDES += ro.control_privapp_permissions=log
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += device/zte/axon7
