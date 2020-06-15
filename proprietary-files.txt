@@ -482,6 +482,8 @@ vendor/etc/init/android.hardware.drm@1.1-service.widevine.rc|5a01d337c1d375ee24a
 vendor/lib/libwvhidl.so|37333d17980282275805807bc648bf8516fd4143
 
 # Fingerprint sensor (Goodix)
+vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service.axon7
+vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.axon7.rc
 vendor/bin/gx_fpd
 vendor/lib64/hw/fingerprint.goodix.so:vendor/lib64/hw/fingerprint.msm8996.so
 vendor/lib64/hw/gxfingerprint.default.so
