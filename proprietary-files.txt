@@ -487,9 +487,9 @@ vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service.axon7.rc
 vendor/bin/gx_fpd
 vendor/lib64/hw/fingerprint.goodix.so:vendor/lib64/hw/fingerprint.msm8996.so
 vendor/lib64/hw/gxfingerprint.default.so
-vendor/lib64/libfp_client.so
+vendor/lib64/libfp_client.so|facf62b3b0d26a2e88a6396304ab273536df7489
 vendor/lib64/libfpnav.so
-vendor/lib64/libfpservice.so
+vendor/lib64/libfpservice.so|833f8f76a256228229bed46467f6deee3e6a3a61
 
 # Gatekeeper
 vendor/lib64/hw/gatekeeper.msm8996.so
