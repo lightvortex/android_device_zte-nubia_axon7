@@ -22,7 +22,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from ailsa_ii device
 $(call inherit-product, device/zte/axon7/device.mk)
 
-# Inherit some common LineageOS stuff.
+# Inherit some common lineageOS stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Set gapps arch
@@ -47,7 +47,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     TARGET_DEVICE="ailsa_ii" \
 
 # Build info
-BUILD_FINGERPRINT := "google/coral/coral:10/QQ2A.200501.001.A3/6353761:user/release-keys"
+BUILD_FINGERPRINT := "google/coral/coral:10/QQ3A.200605.001/6392402:user/release-keys"
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="coral-user 10 QQ2A.200501.001.A3 6353761 release-keys"
+    PRIVATE_BUILD_DESC="coral-user 10 QQ3A.200605.001 6392402 release-keys"
 
