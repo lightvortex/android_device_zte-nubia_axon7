@@ -61,6 +61,9 @@ function blob_fixup() {
     vendor/lib64/vendor.qti.gnss@1.0_vendor.so)
         patchelf --replace-needed "android.hardware.gnss@1.0.so" "android.hardware.gnss@1.0-v27.so" "${2}"
         ;;
+    vendor/lib/hw/camera.msm8996.so)
+        patchelf --remove-needed "android.hidl.base@1.0.so" "${2}"
+        ;;
     esac
 }
 
@@ -93,5 +96,13 @@ fi
 setup_vendor "$DEVICE" "$VENDOR" "$MK_ROOT"
 
 extract "${MY_DIR}"/proprietary-files.txt "${SRC}" "${SECTION}"
+
+DEVICE_BLOB_ROOT="${MK_ROOT}"/vendor/"${VENDOR}"/"${DEVICE}"/proprietary
+
+# Camera data
+for CAMERA_LIB in libfn_facebeauty_v1.so libImgFvDetect.so libfn_facebeauty_v2.so libmmcamera2_stats_algorithm.so; do
+    sed -i "s|/data/misc/camera|/data/vendor/camera|g" "${DEVICE_BLOB_ROOT}"/vendor/lib/${CAMERA_LIB}
+done
+    sed -i "s|/data/misc/camera|/data/vendor/camera|g" "${DEVICE_BLOB_ROOT}"/vendor/lib/hw/camera.msm8996.so
 
 "${MY_DIR}"/setup-makefiles.sh
