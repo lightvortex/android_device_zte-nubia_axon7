@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2017-2019 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,82 +16,19 @@
 # limitations under the License.
 #
 
+# If we're being sourced by the common script that we called,
+# stop right here. No need to go down the rabbit hole.
+if [ "${BASH_SOURCE[0]}" != "${0}" ]; then
+    return
+fi
+
 set -e
 
-DEVICE=axon7
-VENDOR=zte
+# Required!
+export DEVICE=axon7
+export DEVICE_COMMON=msm8996-common
+export VENDOR=zte-nubia
 
-export DEVICE_BRINGUP_YEAR=2020
+export DEVICE_BRINGUP_YEAR=2016
 
-# Load extract_utils and do some sanity checks
-MY_DIR="${BASH_SOURCE%/*}"
-if [[ ! -d "${MY_DIR}" ]]; then MY_DIR="${PWD}"; fi
-
-MK_ROOT="${MY_DIR}/../../.."
-
-HELPER="${MK_ROOT}/vendor/havoc/build/tools/extract_utils.sh"
-if [ ! -f "${HELPER}" ]; then
-    echo "Unable to find helper script at ${HELPER}"
-    exit 1
-fi
-source "${HELPER}"
-
-function blob_fixup() {
-    case "${1}" in
-    vendor/bin/imsrcsd)
-        patchelf --add-needed "libbase_shim.so" "${2}"
-        ;;
-    vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so)
-        patchelf --add-needed "libbase_shim.so" "${2}"
-        ;;
-    vendor/lib/libtfa9890.so)
-        sed -i "s|/etc/settings/stereo_qcom_spk.cnt|/vendor/etc/tfa/stereo_qc_spk.cnt|g" "${2}"
-        sed -i "s|/etc/settings/mono_qcom_rcv.cnt|/vendor/etc/tfa/mono_qc_rcv.cnt|g" "${2}"
-        sed -i "s|/etc/settings/mono_qcom_spk_l.cnt|/vendor/etc/tfa/mono_qc_spk_l.cnt|g" "${2}"
-        sed -i "s|/etc/settings/mono_qcom_spk_r.cnt|/vendor/etc/tfa/mono_qc_spk_r.cnt|g" "${2}"
-        sed -i "s|/etc/settings/stereo_qcom_spk_l.cnt|/vendor/etc/tfa/stereo_qc_spk_l.cnt|g" "${2}"
-        sed -i "s|/etc/settings/stereo_qcom_spk_r.cnt|/vendor/etc/tfa/stereo_qc_spk_r.cnt|g" "${2}"
-        ;;
-    etc/permissions/qti-vzw-ims-internal.xml)
-        sed -i "s|/system/vendor/framework/qti-vzw-ims-internal.jar|/vendor/framework/qti-vzw-ims-internal.jar|g" "${2}"
-        ;;
-    vendor/lib/libFNVfbEngineHAL.so)
-        patchelf --add-needed "libshim_camera.so" "${2}"
-        ;;
-    vendor/lib64/vendor.qti.gnss@1.0_vendor.so)
-        patchelf --replace-needed "android.hardware.gnss@1.0.so" "android.hardware.gnss@1.0-v27.so" "${2}"
-        ;;
-    esac
-}
-
-# Default to sanitizing the vendor folder before extraction
-CLEAN_VENDOR=true
-SECTION=
-KANG=
-
-while [ "$1" != "" ]; do
-    case "$1" in
-        -n | --no-cleanup )     CLEAN_VENDOR=false
-                                ;;
-        -k | --kang)            KANG="--kang"
-                                ;;
-        -s | --section )        shift
-                                SECTION="$1"
-                                CLEAN_VENDOR=false
-                                ;;
-        * )                     SRC="$1"
-                                ;;
-    esac
-    shift
-done
-
-if [ -z "${SRC}" ]; then
-    SRC=adb
-fi
-
-# Initialize the helper
-setup_vendor "$DEVICE" "$VENDOR" "$MK_ROOT"
-
-extract "${MY_DIR}"/proprietary-files.txt "${SRC}" "${SECTION}"
-
-"${MY_DIR}"/setup-makefiles.sh
+"./../../${VENDOR}/${DEVICE_COMMON}/extract-files.sh" "$@"

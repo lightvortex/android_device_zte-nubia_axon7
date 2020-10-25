@@ -1,2 +1,0 @@
-# qcril.so needs access to /vendor/radio/qcril_database/qcril.db
-allow rild vendor_file:file ioctl;

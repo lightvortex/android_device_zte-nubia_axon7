@@ -1,7 +1,0 @@
-# Input devices
-r_dir_file(system_server, idc_file);
-r_dir_file(system_server, keylayout_file);
-
-# interact with thermal_config
-allow system_server thermal-engine:unix_stream_socket connectto;
-allow system_server thermal_socket:sock_file write;

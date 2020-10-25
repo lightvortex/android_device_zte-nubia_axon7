@@ -20,7 +20,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit from ailsa_ii device
-$(call inherit-product, device/zte/axon7/device.mk)
+$(call inherit-product, device/zte-nubia/axon7/device.mk)
 
 # Inherit some common lineageOS stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
